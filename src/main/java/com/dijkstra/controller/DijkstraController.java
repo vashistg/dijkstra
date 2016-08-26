@@ -12,4 +12,9 @@ public class DijkstraController {
 	public String welcome(){
 		return "<h1><b>I am up and running &#9786</b></h1>";
 	}
+	
+	@RequestMapping(value="/test")
+	private void executeQuery(){
+		
+	}
 }
