@@ -9,6 +9,7 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,12 +35,12 @@ public class DijkstraController {
 	private RegionNodes regionNodes;
 	
 	@ResponseBody
-	@RequestMapping(value="/")
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String welcome(){
 		return "<h1><b>I am up and running &#9786</b></h1>";
 	}
 	
-	@RequestMapping(value="/getMatchingRegion")
+	@RequestMapping(value="/getMatchingRegion", method=RequestMethod.GET)
 	public @ResponseBody List<String> getMatchingPatterns(@RequestParam String pattern){
 		List<String> filteredList = new ArrayList<>();
 		if(regionNodes.getNodes().size()==0){
@@ -57,7 +58,7 @@ public class DijkstraController {
 	
 	
 	@ResponseBody
-    @RequestMapping(value="/insertData")
+    @RequestMapping(value="/insertData", method=RequestMethod.POST)
     public void insertCities(){
            /**
            * Add all cities first
