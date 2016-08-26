@@ -6,8 +6,8 @@ public class RegionResponse {
 	private Region region;
 	private Set<Region> parentRegions;
 	private Set<Region> childRegions;
-	private String getParentStrings;
-	private String getChildrenString;
+	private String parentStrings;
+	private String childrenString;
 	private String message;
 	
 	public Region getRegion() {
@@ -28,23 +28,23 @@ public class RegionResponse {
 	public void setChildRegions(Set<Region> childRegions) {
 		this.childRegions = childRegions;
 	}
-	public String getGetParentStrings() {
-		return getParentStrings;
-	}
-	public void setGetParentStrings(String getParentStrings) {
-		this.getParentStrings = getParentStrings;
-	}
-	public String getGetChildrenString() {
-		return getChildrenString;
-	}
-	public void setGetChildrenString(String getChildrenString) {
-		this.getChildrenString = getChildrenString;
-	}
 	public String getMessage() {
 		return message;
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public String getParentStrings() {
+		return parentStrings;
+	}
+	public void setParentStrings(String parentStrings) {
+		this.parentStrings = parentStrings;
+	}
+	public String getChildrenString() {
+		return childrenString;
+	}
+	public void setChildrenString(String childrenString) {
+		this.childrenString = childrenString;
 	}
 
 }

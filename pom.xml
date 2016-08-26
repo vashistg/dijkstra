@@ -42,6 +42,26 @@
     	<version>4.1.0.M1</version>
 	</dependency>
 	
+	<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+<dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.7</version>
+</dependency>
+	
+		<!-- Swagger  dependencies -->
+		<dependency>
+    		<groupId>io.springfox</groupId>
+    		<artifactId>springfox-swagger2</artifactId>
+   		   <version>2.2.2</version>
+	  </dependency>
+	  
+	  <dependency>
+    	<groupId>io.springfox</groupId>
+    	<artifactId>springfox-swagger-ui</artifactId>
+    	<version>2.2.2</version>
+	</dependency>
+	
 	
 	<!-- Servlet dependencies -->
     	<dependency>
