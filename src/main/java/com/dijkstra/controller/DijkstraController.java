@@ -9,11 +9,13 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dijkstra.pojo.City;
 import com.dijkstra.pojo.Region;
+import com.dijkstra.pojo.RegionNodes;
 import com.dijkstra.pojo.RegionRequest;
 import com.dijkstra.pojo.Regions;
 import com.dijkstra.service.api.RegionBuilderServiceApi;
@@ -28,11 +30,30 @@ public class DijkstraController {
 	@Autowired
 	private Regions regions;
 	
+	@Autowired
+	private RegionNodes regionNodes;
+	
 	@ResponseBody
 	@RequestMapping(value="/")
 	public String welcome(){
 		return "<h1><b>I am up and running &#9786</b></h1>";
 	}
+	
+	@RequestMapping(value="/getMatchingRegion")
+	public @ResponseBody List<String> getMatchingPatterns(@RequestParam String pattern){
+		List<String> filteredList = new ArrayList<>();
+		if(regionNodes.getNodes().size()==0){
+			regionNodes.getNodes().addAll(regionBuilderService.getAllRegionNames());
+		}
+		for(String node:regionNodes.getNodes()){
+			if(node.toLowerCase().startsWith(pattern.toLowerCase())){
+				filteredList.add(node);
+			}
+		}
+		return filteredList;
+	}
+	
+	
 	
 	
 	@ResponseBody

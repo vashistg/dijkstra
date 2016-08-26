@@ -15,6 +15,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.dijkstra.pojo.City;
+import com.dijkstra.pojo.RegionNodes;
 import com.dijkstra.pojo.Regions;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -63,6 +64,11 @@ public class SpringContextConfig extends WebMvcConfigurerAdapter{
            Regions regions = new Regions();
            regions.setCities(airportList);
            return regions;
+    }
+	
+	@Bean
+    public RegionNodes getRegionNodes(){
+           return new RegionNodes();
     }
 	
 	/**

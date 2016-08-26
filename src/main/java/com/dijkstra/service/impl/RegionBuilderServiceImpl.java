@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.dijkstra.neo4j.nodes.RegionNode;
 import com.dijkstra.pojo.Region;
+import com.dijkstra.pojo.RegionNodes;
 import com.dijkstra.pojo.RegionRequest;
 import com.dijkstra.pojo.RegionResponse;
 import com.dijkstra.repository.RegionRepository;
@@ -19,9 +20,13 @@ public class RegionBuilderServiceImpl implements RegionBuilderServiceApi{
 	
 	@Autowired
 	private RegionRepository regionRepository;
+	
+	@Autowired
+	private RegionNodes nodes;
 
 	@Override
 	public RegionResponse addRegion(RegionRequest reuest) {
+		nodes.getNodes().add(reuest.getRegion().getName());
 		RegionNode regionNode = new RegionNode(reuest.getRegion().getName(),reuest.getRegion().getType());
 		if(null != reuest.getChildRegions() && reuest.getChildRegions().size()>0){
 			Set<RegionNode> childNodes = getNodesFromName(reuest.getChildRegions());
@@ -56,6 +61,7 @@ public class RegionBuilderServiceImpl implements RegionBuilderServiceApi{
 	@Override
 	public RegionResponse deleteRegion(RegionRequest reuest) {
 		// TODO Auto-generated method stub
+		nodes.getNodes().remove(reuest.getRegion().getName());
 		RegionNode regionNode = regionRepository.findByName(reuest.getRegion().getName());
 		regionRepository.delete(regionNode);
 		RegionResponse response = new RegionResponse();
@@ -219,6 +225,14 @@ public class RegionBuilderServiceImpl implements RegionBuilderServiceApi{
 			response.setMessage("Region - "+ reuest.getRegion().getName() + " - Updated Successfully");
 		}
 		return response;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.dijkstra.service.api.RegionBuilderServiceApi#getAllRegionNames()
+	 */
+	@Override
+	public List<String> getAllRegionNames() {
+		return regionRepository.getAllNodeNames();
 	}
 
 }

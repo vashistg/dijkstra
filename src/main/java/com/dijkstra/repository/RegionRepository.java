@@ -27,4 +27,7 @@ public interface RegionRepository extends GraphRepository<RegionNode> {
 		
 		@Query("match (fromNode:RegionNode)-[:SUB_REGION_OF*..100] -> (toNode:RegionNode{name:{regionName}}) RETURN fromNode")	
 		List<RegionNode> getAllChildRegions(@Param("regionName") String regionName);
+		
+		@Query("match n return n.name")
+		List<String> getAllNodeNames();
 }

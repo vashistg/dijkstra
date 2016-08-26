@@ -20,7 +20,7 @@ public class MyNeo4jConfiguration extends Neo4jConfiguration {
 	final String grapheneUrl;
 
 	public MyNeo4jConfiguration() {
-		grapheneUrl = "http://neo4j:abcd1234@localhost:7474";
+		grapheneUrl = "http://neo4j:harpal@localhost:7474";
 	}
 
 
